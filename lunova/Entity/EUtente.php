@@ -46,49 +46,42 @@ class EUtente{
      */
 
 
-    /*
+    
     
     public function __construct($ut)
     {
-        if (1 === func_num_args()){
-            $this->id =0;
-            $this->dischi = array();
-            $this->totale = 0.0;
-            $this->mail_utente=$ut;
-            $this->pagato = 0;
+        if (5 === func_num_args()){
+            $this->Nome = func_get_arg(0);
+            $this->Cognome = func_get_arg(1);
+            $this->Email = func_get_arg(2);
+            $this->Password = func_get_arg(3);
+            $this->Livello = func_get_arg(4);    //scelta multipla per il livello di iscrizione
+            $this->Via = "";
+            $this->NumeroCivico = "";
+            $this->Citta = "";
+            $this->Provincia = "";
+            $this->CAP = "";
+            $this->Telefono = "";
+            $this->Profilo = null;
         }
-        elseif (4 === func_num_args()){
-            $idcar=func_get_arg(0);
-            $disco=func_get_arg(1);
-            $quantita=func_get_arg(2);
-            $utente=func_get_arg(3);
-            $this->id=$idcar;
-            $disco_new=new EDisco($disco);
-            $this->dischi[$disco_new->getId()]=$quantita;
-            $this->totale=$disco_new->getPrezzo()*$quantita;
-            $this->mail_utente=$utente;
-            $this->pagato=0;
-
+        elseif (12 === func_num_args()){
+            $this->Nome = func_get_arg(0);
+            $this->Cognome = func_get_arg(1);
+            $this->Email = func_get_arg(2);
+            $this->Password = func_get_arg(3);
+            $this->Livello = func_get_arg(4);    //scelta multipla per il livello di iscrizione
+            $this->Via = func_get_arg(5);
+            $this->NumeroCivico = func_get_arg(6);
+            $this->Citta = func_get_arg(7);
+            $this->Provincia = func_get_arg(8);
+            $this->CAP = func_get_arg(9);
+            $this->Telefono = func_get_arg(10);
+            $this->Profilo = func_get_arg(11);
 
         }
 
     }
     
-    */
-
-    public function __construct(string $n, string $c, string $v, string $nc, string $citta, string $prov, string $cap,string $telefono, string $email, string $pw)
-    {
-        $this->Nome = $n;
-        $this->Cognome = $c;
-        $this->Via = $v;
-        $this->NumeroCivico = $nc;
-        $this->Citta = $citta;
-        $this->Provincia = $prov;
-        $this->CAP = $cap;
-        $this->Telefono = $telefono;
-        $this->Email = $email;
-        $this->Password = $pw;
-    }
 
     /**
      * @param string $livello
