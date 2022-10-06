@@ -1,8 +1,8 @@
 <?php
-define("DB_HOST", 'localhost');
-define("DB_USER", 'root');
-define("DB_PASS", '');
-define("DB_NAME", 'phpecommerce');
+$hostname="127.0.0.1";
+$dbname="progetto";  //cambiare nel nome del proprio db per far funzionare
+$user="root";
+$password="";
 
 	
 ?>

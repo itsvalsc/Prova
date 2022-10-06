@@ -4,32 +4,32 @@
  * OK
  * Class EUtente
  */
-
+//cambio da private in protected
 class EUtente{
 
-    private string $Nome;
+    protected string $Nome;
 
-    private string $Cognome;
+    protected string $Cognome;
 
-    private string $Via;
+    protected string $Via;
 
-    private string $NumeroCivico;
+    protected string $NumeroCivico;
 
-    private string $Citta;
+    protected string $Citta;
 
-    private string $Provincia;
+    protected string $Provincia;
 
-    private string $CAP;
+    protected string $CAP;
 
-    private string $Telefono;
+    protected string $Telefono;
 
-    private string $Livello;
+    protected string $Livello;
 
-    private string $Email;
+    protected string $Email;
 
-    private string $Password;
+    protected string $Password;
 
-    private EImmagine $Profilo;
+    protected $Profilo;
 
     /**
      * EUtente constructor.
@@ -161,5 +161,10 @@ class EUtente{
      */
     public function getPassword(): string
     { return $this->Password; }
+
+    public function setNome($n): void{
+        $this->Nome=$n;
+    }
 }
+
 
