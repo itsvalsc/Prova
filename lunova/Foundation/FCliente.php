@@ -18,6 +18,8 @@ public static function exist($email) : bool {
 	else {
 		return true;
 	}
+
+    //prova di cambiamento
 }
 
 
