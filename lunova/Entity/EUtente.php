@@ -64,19 +64,23 @@ class EUtente{
             $this->Telefono = "";
             $this->Profilo = null;
         }
-        elseif (12 === func_num_args()){
+        elseif (10 === func_num_args()){
             $this->Nome = func_get_arg(0);
             $this->Cognome = func_get_arg(1);
-            $this->Email = func_get_arg(2);
-            $this->Password = func_get_arg(3);
-            $this->Livello = func_get_arg(4);    //scelta multipla per il livello di iscrizione
-            $this->Via = func_get_arg(5);
-            $this->NumeroCivico = func_get_arg(6);
-            $this->Citta = func_get_arg(7);
-            $this->Provincia = func_get_arg(8);
-            $this->CAP = func_get_arg(9);
-            $this->Telefono = func_get_arg(10);
-            $this->Profilo = func_get_arg(11);
+            $this->Via = func_get_arg(2);
+            $this->NumeroCivico = func_get_arg(3);
+            $this->Citta = func_get_arg(4);
+            $this->Provincia = func_get_arg(5);
+            $this->CAP = func_get_arg(6);
+            $this->Telefono = func_get_arg(7);
+            $this->Email = func_get_arg(8);
+            $this->Password = func_get_arg(9);
+                //scelta multipla per il livello di iscrizione
+
+
+
+
+
 
         }
 

@@ -7,7 +7,7 @@ class FConnectionDB{
 
         if (!isset(self::$instance)) {
             try {
-                self::$instance = new PDO ("mysql:host=" . $GLOBALS['hostname'] . ";dbname=" . $GLOBALS['dbname'], $GLOBALS['user'], $GLOBALS['pass']);
+                self::$instance = new PDO ("mysql:host=" . $GLOBALS['hostname'] . ";dbname=" . $GLOBALS['dbname'], $GLOBALS['user'], $GLOBALS['password']);
 
             } catch (PDOException $e) {
                 echo "Errore in FConnectionDB: " . $e->getMessage();
