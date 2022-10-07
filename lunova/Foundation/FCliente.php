@@ -93,14 +93,56 @@ class FCliente
         return $utente;
     }
 
+    public static function delete(string $email) {
+        $pdo=FConnectionDB::connect();
 
+        try {
+            $ifExist = self::exist($email);
+            if($ifExist) {
+                $query = "DELETE FROM cliente WHERE Email= :email";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute([":email" => $email]);
+                return true;
+            }
+            else{ return false;}
+        }
+        catch(PDOException $exception) {print("Errore".$exception->getMessage());}
 
+    }
 
+    public static function prelevaCliente(string $email) {
+        $pdo=FConnectionDB::connect();
 
+        try {
+            $ifExist = self::exist($email);
+            if($ifExist) {
+                $query = "SELECT * FROM cliente WHERE Email= :email";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute( [":email" => $email] );
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+                $Idcliente = $rows[0]['IdCliente'];
+                $Email = $rows[0]['Email'];
+                $Nome = $rows[0]['Nome'];
+                $Cognome = $rows[0]['Cognome'];
+                $Via = $rows[0]['Via'];
+                $NumeroCivico = $rows[0]['NCivico'];
+                $Provincia = $rows[0]['Provincia'];
+                $Citta = $rows[0]['Citta'];
+                $CAP = $rows[0]['CAP'];
+                $Telefono = $rows[0]['NTelefono'];
+                $Password = $rows[0]['Password'];
+               // $Livello = $rows[0]['Livello'];
 
+                $utente = new EClient($Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Email,$Password,null,$Idcliente);
+                return $utente;
+            }
+            else {return "Non ci sono clienti";}
+        }
+        catch (PDOException $exception) { print ("Errore".$exception->getMessage());}
 
-
-
-
+    }
 }
+
+
+?>

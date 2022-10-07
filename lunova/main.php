@@ -11,6 +11,9 @@ require_once "inc/configdb.php";
 
 //$a=FCliente::store($utt);
 
-$a=FCliente::load('l@l.com');
+//$a=FCliente::load('l@l.com');
+
+$a=FCliente::prelevaCliente('pluto@gmail.com');
 
 print_r($a);
+

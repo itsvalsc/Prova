@@ -10,7 +10,7 @@ class FPersistentManager{
 		return self::$instance;
 	}
 
-	public function exist() : bool {
+	public function exist()  {  //TODO: dopo classi foundation aggiornare
 
 	}
 
