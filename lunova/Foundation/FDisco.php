@@ -63,6 +63,70 @@ class FDisco {
 
     }
 
+
+    public static function prelevaDischi() : array {
+        try{
+            $pdo = FConnectionDB::connect();
+            //$pdo->beginTransaction();
+
+            $stmt = $pdo->prepare("SELECT * FROM dischi");
+            $stmt->execute();
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $dischi = array();
+            foreach ($rows as $row) {
+                $disc=new EDisco($row['name'],
+                    $row['artist_id'],
+                    $row['price'],
+                    $row['description'],
+                    $row['category_id'],
+                    null,
+                    $row['Qta']
+                    );
+                $disc->setID($row['ID']);
+                $dischi[$row['ID']]=$disc;
+            }
+            //$pdo->commit();
+            return $dischi;
+        }
+        catch (PDOException $e){
+            print("ATTENTION ERROR: ") . $e->getMessage();
+            $pdo->rollBack();
+            return array();
+        }
+
+    }
+
+    public static function prelevaDischiperGenere(string $cat) : array {
+        try{
+            $pdo = FConnectionDB::connect();
+            //$pdo->beginTransaction();
+
+            $stmt = $pdo->prepare("SELECT * FROM dischi WHERE category_id = :categoria");
+            $stmt->execute([":categoria"=>$cat]);
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $dischi = array();
+            foreach ($rows as $row) {
+                $disc=new EDisco($row['name'],
+                    $row['artist_id'],
+                    $row['price'],
+                    $row['description'],
+                    $row['category_id'],
+                    null,
+                    $row['Qta']
+                );
+                $disc->setID($row['ID']);
+                $dischi[$row['ID']]=$disc;
+            }
+            //$pdo->commit();
+            return $dischi;
+        }
+        catch (PDOException $e){
+            print("ATTENTION ERROR: ") . $e->getMessage();
+            $pdo->rollBack();
+            return array();
+        }
+
+    }
 }
 
 

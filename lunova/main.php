@@ -17,9 +17,9 @@ require_once "Entity/EDisco.php";
 
 //$a=FCliente::prelevaCliente('pluto@gmail.com');
 
-$a = new EDisco('Trenta','adele',12,'1) Easy on me 2) Wine \n 3)Girls in on fire','0',null,1000);
+$a = new EDisco('Cinquanta','2022',12,'1) Easy 2) BEER 3) girl','1',null,1500);
 
-$b = FDisco::load('D94');
+$b = FDisco::prelevaDischiperGenere('0');
 
 print_r($b);
 
