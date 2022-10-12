@@ -11,17 +11,20 @@ class EDisco{
 	private float $prezzo;
 	private string $descrizione;
 	private string $genere;
-	private EImmagine $copertina;
+    private int $quantita;
+	private $copertina;    //reinserire Eimmagine come tipo
 
 	private $_commento = array();
 
-	public function __construct(string $t, string $a, float $price, string $descriz, string $gen, string $img){
+	public function __construct(string $titol, string $aut, float $price, string $descriz, string $gen, $img, int $q){
 
-		$this->titolo = $t ;
-		$this->autore = $a ;
+        $this->ID_disco = "D"  . random_int(0,1000);
+		$this->titolo = $titol ;
+		$this->autore = $aut ;
 		$this->prezzo = $price ; 
 		$this->descrizione = $descriz ;
 		$this->genere = $gen ;
+        $this->quantita = $q;
 		$this->copertina = $img ;
 
 	}
@@ -40,6 +43,11 @@ class EDisco{
 
 
 	//metodi get
+    public function getID()
+    { return($this->ID_disco);}
+
+    public function getQta()
+    { return($this->quantita);}
 
 	public function getTitolo()
 	{ return($this->titolo);}
