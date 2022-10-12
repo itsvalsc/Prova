@@ -113,6 +113,26 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 
+-- Dump della struttura di tabella lunova.dischi
+CREATE TABLE IF NOT EXISTS `dischi` (
+  `ID` varchar(5) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `artist_id` varchar(5) NOT NULL,
+  `Qta` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_dischi_artista` (`artist_id`),
+  KEY `FK_dischi_categories` (`category_id`),
+  CONSTRAINT `FK_dischi_artista` FOREIGN KEY (`artist_id`) REFERENCES `artista` (`IdArtista`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_dischi_categories` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dump dei dati della tabella lunova.dischi: ~0 rows (circa)
+/*!40000 ALTER TABLE `dischi` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dischi` ENABLE KEYS */;
+
 -- Dump della struttura di tabella lunova.immagine
 CREATE TABLE IF NOT EXISTS `immagine` (
   `Id` varchar(5) NOT NULL,
@@ -120,10 +140,10 @@ CREATE TABLE IF NOT EXISTS `immagine` (
   `Formato` blob NOT NULL,
   `IdAppartenenza` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`Id`),
-  KEY `FK_immagine_artista` (`IdAppartenenza`),
+  KEY `FK_immagine_dischi` (`IdAppartenenza`),
   CONSTRAINT `FK_immagine_artista` FOREIGN KEY (`IdAppartenenza`) REFERENCES `artista` (`IdArtista`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_immagine_cliente` FOREIGN KEY (`IdAppartenenza`) REFERENCES `cliente` (`IdCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_immagine_product` FOREIGN KEY (`IdAppartenenza`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_immagine_dischi` FOREIGN KEY (`IdAppartenenza`) REFERENCES `dischi` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella lunova.immagine: ~0 rows (circa)
@@ -160,34 +180,15 @@ CREATE TABLE IF NOT EXISTS `ordineitem` (
   `IdProdotto` varchar(5) NOT NULL,
   `IdOrdine` varchar(5) NOT NULL,
   PRIMARY KEY (`Idordineitem`),
-  KEY `FK_ordineitem_product` (`IdProdotto`),
   KEY `FK_ordineitem_ordine` (`IdOrdine`),
-  CONSTRAINT `FK_ordineitem_ordine` FOREIGN KEY (`IdOrdine`) REFERENCES `ordine` (`IdOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_ordineitem_product` FOREIGN KEY (`IdProdotto`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `FK_ordineitem_dischi` (`IdProdotto`),
+  CONSTRAINT `FK_ordineitem_dischi` FOREIGN KEY (`IdProdotto`) REFERENCES `dischi` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_ordineitem_ordine` FOREIGN KEY (`IdOrdine`) REFERENCES `ordine` (`IdOrdine`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dump dei dati della tabella lunova.ordineitem: ~0 rows (circa)
 /*!40000 ALTER TABLE `ordineitem` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ordineitem` ENABLE KEYS */;
-
--- Dump della struttura di tabella lunova.product
-CREATE TABLE IF NOT EXISTS `product` (
-  `id` varchar(5) NOT NULL DEFAULT '',
-  `name` varchar(50) NOT NULL DEFAULT '0',
-  `description` text NOT NULL,
-  `price` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `category_id` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `FK_product_categories` (`category_id`),
-  CONSTRAINT `FK_product_categories` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Dump dei dati della tabella lunova.product: ~2 rows (circa)
-/*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` (`id`, `name`, `description`, `price`, `category_id`) VALUES
-	('1', 'Prodotto 1', 'Quetso è ilprodotto 1', 9.00, 1),
-	('2', 'Prodotto 2', 'Quetso è ilprodotto 2', 10.00, 2);
-/*!40000 ALTER TABLE `product` ENABLE KEYS */;
 
 -- Dump della struttura di tabella lunova.wallet
 CREATE TABLE IF NOT EXISTS `wallet` (
