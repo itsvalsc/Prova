@@ -63,6 +63,24 @@ class FDisco {
 
     }
 
+
+    public static function delete(string $ID_disco) {
+        $pdo=FConnectionDB::connect();
+
+        try {
+            $ifExist = self::exist($ID_disco);
+            if($ifExist) {
+                $query = "DELETE FROM dischi WHERE ID= :id";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute([":id" => $ID_disco]);
+                return true;
+            }
+            else{ return print('File non trovato');}
+        }
+        catch(PDOException $exception) {print("Errore".$exception->getMessage());}
+
+    }
+
 }
 
 
