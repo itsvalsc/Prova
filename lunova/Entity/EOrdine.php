@@ -33,7 +33,7 @@ class EOrdine {
     //metodi get
 
     public function getCittaSpe(): string 
-    { reurn $this->CittaSped; }
+    { return $this->CittaSped; }
 
     public function getIdOrdine(): string 
     { return $this->IdOrdine; }
@@ -61,7 +61,7 @@ class EOrdine {
     //metodi set
 
     public function setCittaSpe(string $cittaspe): void 
-    { $this->CittaSped = $cittasped; }
+    { $this->CittaSped = $cittaspe; }
 
     public function setIdOrdine($IdOrdine): void 
     { $this->IdOrdine = $IdOrdine ; }
@@ -78,8 +78,8 @@ class EOrdine {
     public function setDischi(array $dischi): void 
     { $this->Dischi = $dischi ; }
 
-    public function setTotOrdine( float $tot): float 
-    {$this->TotOrdine = $tot ;}
+    public function setTotOrdine( float $tot): void
+    { $this->TotOrdine = $tot ;}
 
     public function setIdCliente(string $IdCli): void
     { $this->IdCliente = $IdCli;}
@@ -92,177 +92,58 @@ class EOrdine {
     }
 
     public function NumericTotal(){
-        foreach($this->$Dischi as $disco){
+        foreach($this->Dischi as $disco){
             $this->TotOrdine += $disco->getTotPrice();
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * @AttributeType int
-     */
-    //public $id;
-    /**
-     * @AttributeType Date
-     */
-    //public $data;
-    /**
-     * @AttributeType boolean
-     */
-    //public $pagato=false;
-    /**
-     * @AttributeType boolean
-     */
-    //public $confermato=false;
-    /**
-     * @AssociationType Entity.EUtente
-     * @AssociationMultiplicity 1
-     */
-    //public $_utente;
-    /**
-     * @AssociationType Entity.EOrdineItem
-     * @AssociationMultiplicity 1..*
-     * @AssociationKind Aggregation
-     */
-    //public $_item = array();
-    /**
-     * @AssociationType Entity.ECartaCredito
-     * @AssociationMultiplicity 1
-     */
-    //public $_cartacredito;
-
-    /**
-     * 
-     * @return float
-     */
-    //public function getPrezzoTotale() {
-        //$prezzo=0;
-        //if (count($this->_item)>0) {
-            //foreach($this->_item as $item) {
-                //$Disco=$item->getDisco();
-                //$prezzo += $Disco->prezzo*$item->quantita;
-            //}
-       //}
-        //return $prezzo;
-    //}
-
-    /**
-     * 
-     * @param EOrdineItem item
-     */
-    //public function addItem(EOrdineItem $item) {
-        //$itemDisco=$item->getDisco();
-        ////$aggiornato=false;
-        ////foreach ($this->_item as & $thisItem) {
-        ////    $thisDisco=$thisItem->getDisco();
-       //   //  if ($thisDisco->ISBN==$itemDisco->ISBN) {
-     //  //     //    $thisItem->quantita++;
-         //     //  $aggiornato=true;
-          // // }
-        //}
-        //if (!$aggiornato)
-          //  $this->_item[]=$item;
-    //}
-
-    /**
-     * 
-     * @param $pagato boolean
-     */
-    //public function setPagato($pagato) {
-       // $this->pagato=$pagato;
-    //}
-
-    /**
-     * 
-     * @param $confermato boolean
-     */
-    //public function setConfermato($confermato) {
-      //  $this->confermato=$confermato;
-    //}
-
-    /**
-     * 
-     * @return array()
-     */
-    //public function getItems() {
-        //return $this->_item;
+    public function Compile($IdOrdine, $CittàSpe, $CAPSped, $IndirizzoSped, $ModPagamento, $TotOrdine): void
+    {
+        $this->setIdOrdine($IdOrdine);
+        $this->setCittaSpe($CittàSpe);
+        $this->setCapSped($CAPSped);
+        $this->setIndirizzoSped($IndirizzoSped);
+        $this->setModPagamento($ModPagamento);
+        $this->setTotOrdine($TotOrdine);
     }
-    /**
-     * 
-     * @param $data string
-     */
-    //public function setData($data) {
-        //$anno=substr($data, 6);
-      //  $mese=substr($data, 3, 2);
-        //$giorno=substr($data, 0, 2);
-      //  $this->data="$anno-$mese-$giorno";
-    //}
-    /**
-     * 
-     * @param $cartaCredito ECartaCredito
-     */
-    //public function setCartaCredito(ECartaCredito $cartaCredito) {
-        //$this->_cartacredito=$cartaCredito;
-    }
-    /**
-     * 
-     * @param $utente EUtente
-     */
-    //public function setUtente(EUtente $utente) {
-       // $this->_utente=$utente;
-    }
-    /**
-     * rimuovo l'item nella posizione $pos dell'array
-     *
-     * @param int $pos
-     */
-    //public function removeItem($pos) {
-        //unset($this->_item[$pos]);
-      //  $this->_item=array_values($this->_item);
-    //}
-    /** restituisce l'utente relativo all'ordine
-     * @return EUtente
-     */
-    //public function getUtente() {
-    //    return $this->_utente;
-  //  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
