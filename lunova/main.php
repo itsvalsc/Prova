@@ -18,6 +18,8 @@ require_once "Entity/EDisco.php";
 //$a=FCliente::prelevaCliente('pluto@gmail.com');
 
 $a = new EDisco('Trenta','adele',12,'1) Easy on me 2) Wine \n 3)Girls in on fire','0',null,1000);
-FDisco::store($a);
-//print_r($b);
+
+$b = FDisco::load('D94');
+
+print_r($b);
 

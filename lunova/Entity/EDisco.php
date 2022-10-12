@@ -70,7 +70,9 @@ class EDisco{
 
 
 	//metodi set
-	
+    public function setID( string $id )
+    { $this->ID_disco = $id ;}
+
 	public function setTitolo( string $s )
 	{ $this->titolo = $s ;}
 
