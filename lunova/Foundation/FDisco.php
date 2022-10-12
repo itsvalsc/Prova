@@ -144,6 +144,27 @@ class FDisco {
         catch(PDOException $exception) {print("Errore".$exception->getMessage());}
 
     }
+
+    public static function update( $campo, $valore, $id)
+    {
+        $pdo=FConnectionDB::connect();
+
+        $query = "UPDATE dischi SET " . $campo . " = :valore  WHERE  ID = :id";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([":id" => $id , ":valore" => $valore]);
+        return true;
+    }
+
+    public static function updateQta( $valore, $id)
+    {
+        $pdo=FConnectionDB::connect();
+
+        $query = "UPDATE dischi SET Qta = :valore  WHERE  ID = :id";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([":id" => $id , ":valore" => $valore]);
+        return true;
+    }
+
 }
 
 
