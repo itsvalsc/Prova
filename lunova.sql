@@ -61,6 +61,20 @@ CREATE TABLE IF NOT EXISTS `artista` (
 /*!40000 ALTER TABLE `artista` DISABLE KEYS */;
 /*!40000 ALTER TABLE `artista` ENABLE KEYS */;
 
+-- Dump della struttura di tabella lunova.carrello
+CREATE TABLE IF NOT EXISTS `carrello` (
+  `id` varchar(5) NOT NULL,
+  `id_cliente` varchar(5) NOT NULL DEFAULT '',
+  `lista` text DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_carrello_cliente` (`id_cliente`),
+  CONSTRAINT `FK_carrello_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`IdCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dump dei dati della tabella lunova.carrello: ~0 rows (circa)
+/*!40000 ALTER TABLE `carrello` DISABLE KEYS */;
+/*!40000 ALTER TABLE `carrello` ENABLE KEYS */;
+
 -- Dump della struttura di tabella lunova.carta
 CREATE TABLE IF NOT EXISTS `carta` (
   `NCarta` varchar(16) NOT NULL,
@@ -111,6 +125,8 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 
 -- Dump dei dati della tabella lunova.cliente: ~0 rows (circa)
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+INSERT INTO `cliente` (`IdCliente`, `Email`, `Nome`, `Cognome`, `NCivico`, `Via`, `Provincia`, `Citta`, `CAP`, `NTelefono`, `Password`, `Livello`) VALUES
+	('67890', 'ciao@gmail.com', 'ciao', 'prova', '3', 'provetta', 'rm', 'roma', '00042', '2345679902', 'neve', 'C');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 
 -- Dump della struttura di tabella lunova.dischi
@@ -157,19 +173,21 @@ CREATE TABLE IF NOT EXISTS `ordine` (
   `CAPSped` varchar(5) NOT NULL,
   `IndirizzoSped` varchar(30) NOT NULL,
   `ModPagamento` varchar(10) NOT NULL,
+  `Carrello` varchar(5) NOT NULL,
   `TotaleOrdine` varchar(10) NOT NULL,
   `Confermato` tinyint(1) NOT NULL,
   `IdCliente` varchar(5) NOT NULL,
-  `IdArtista` varchar(5) NOT NULL,
+  `IdCarrello` varchar(5) NOT NULL,
   PRIMARY KEY (`IdOrdine`),
   KEY `FK_ordine_cliente` (`IdCliente`),
-  KEY `FK_ordine_artista` (`IdArtista`),
-  CONSTRAINT `FK_ordine_artista` FOREIGN KEY (`IdArtista`) REFERENCES `artista` (`IdArtista`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_ordine_cliente` FOREIGN KEY (`IdCliente`) REFERENCES `cliente` (`IdCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dump dei dati della tabella lunova.ordine: ~0 rows (circa)
+-- Dump dei dati della tabella lunova.ordine: ~1 rows (circa)
 /*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
+INSERT INTO `ordine` (`IdOrdine`, `CittaSped`, `CAPSped`, `IndirizzoSped`, `ModPagamento`, `Carrello`, `TotaleOrdine`, `Confermato`, `IdCliente`, `IdCarrello`) VALUES
+	('12345', 'roma', '00042', 'porta', 'carta', '', '45.00', 1, '67890', ''),
+	('34567', 'roma', '00100', 'pizza', 'carta', '', 'Array', 33, '67890', '');
 /*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
 
 -- Dump della struttura di tabella lunova.ordineitem
