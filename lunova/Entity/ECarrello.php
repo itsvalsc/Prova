@@ -8,7 +8,7 @@ class ECarrello
 {
     private $dischi = array();
 
-    private string $mail_utente;
+    private string $id_utente;
     
     private int $id; 
 
@@ -16,6 +16,8 @@ class ECarrello
 
     private float $totale;
 
+
+    //TODO: fare un array associativo con dischi e quantità + metodi per modifica quantità
 
 /**
      * @return bool|int
@@ -43,10 +45,10 @@ class ECarrello
     public function __construct($ut)
     {
         if (1 === func_num_args()){
-            $this->id =0;
+            $this->id = "F"  . random_int(0,100);
             $this->dischi = array();
             $this->totale = 0.0;
-            $this->mail_utente=$ut;
+            $this->id_utente=$ut;
             $this->pagato = 0;
         }
         elseif (4 === func_num_args()){
@@ -58,7 +60,7 @@ class ECarrello
             $disco_new=new EDisco($disco);
             $this->dischi[$disco_new->getId()]=$quantita;
             $this->totale=$disco_new->getPrezzo()*$quantita;
-            $this->mail_utente=$utente;
+            $this->id_utente=$utente;
             $this->pagato=0;
 
 
@@ -69,17 +71,17 @@ class ECarrello
     /**
      * @param string $mail_utente
      */
-    public function setMailUtente(string $mail_utente): void
+    public function setIdUtente(string $id_utente): void
     {
-        $this->mail_utente = $mail_utente;
+        $this->id_utente = $id_utente;
     }
 
     /**
      * @return string
      */
-    public function getMailUtente(): string
+    public function getIdUtente(): string
     {
-        return $this->mail_utente;
+        return $this->id_utente;
     }
 
     /**

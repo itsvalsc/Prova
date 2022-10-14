@@ -14,7 +14,7 @@ class EOrdine {
 
     private string $ModPagamento;
 
-    private $Dischi = array();
+    private ECarrello $carrello;
 
     private float $TotOrdine;
 
@@ -25,6 +25,7 @@ class EOrdine {
         $this->IdOrdine = random_int(0,1000);
         $this->TotOrdine = 0.0;
         $this->IdCliente = $Idcl;
+        $this->carrello = new ECarrello($Idcl);
     }
 
        
@@ -47,8 +48,8 @@ class EOrdine {
     public function getModPagamento(): string 
     {return $this->ModPagamento; }
 
-    public function getDischi(): array 
-    { return $this->Dischi; }
+    public function getCarrello(): array
+    { return $this->carrello->getDischi(); }
 
     public function getTotOrdine(): float 
     {return $this->TotOrdine;}
@@ -74,9 +75,6 @@ class EOrdine {
 
     public function setModPagamento(string $mod): void 
     { $this->ModPagamento = $mod ; }
-
-    public function setDischi(array $dischi): void 
-    { $this->Dischi = $dischi ; }
 
     public function setTotOrdine( float $tot): void
     { $this->TotOrdine = $tot ;}
