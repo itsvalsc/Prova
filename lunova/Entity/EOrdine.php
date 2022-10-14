@@ -82,6 +82,9 @@ class EOrdine {
     public function setIdCliente(string $IdCli): void
     { $this->IdCliente = $IdCli;}
 
+    public function setCarrello(ECarrello $car): void
+    { $this->carrello = $car; }
+
 
     // _METHODS_
     

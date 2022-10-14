@@ -10,7 +10,9 @@ class ECarrello
 
     private string $id_utente;
     
-    private int $id; 
+    private string $id;
+
+    private string $id_ordine;
 
     private bool $pagato;
 
@@ -53,14 +55,14 @@ class ECarrello
         }
         elseif (4 === func_num_args()){
             $idcar=func_get_arg(0);
-            $disco=func_get_arg(1);
-            $quantita=func_get_arg(2);
-            $utente=func_get_arg(3);
+            $id_cliente=func_get_arg(1);
+            $id_ordine=func_get_arg(2);
+            $lista=func_get_arg(3);
             $this->id=$idcar;
-            $disco_new=new EDisco($disco);
-            $this->dischi[$disco_new->getId()]=$quantita;
-            $this->totale=$disco_new->getPrezzo()*$quantita;
-            $this->id_utente=$utente;
+            $this->id_ordine = $id_ordine;
+            $this->dischi= $lista;
+            $this->totale=0; //TODO: funzione di calcolo del totale
+            $this->id_utente=$id_cliente;
             $this->pagato=0;
 
 
@@ -138,12 +140,39 @@ class ECarrello
     }
 
     /**
+     * @return string
+     */
+    public function getIdOrdine(): string
+    {
+        return $this->id_ordine;
+    }
+
+    /**
      * @return array
      */
     public function getDischi(): array
     {
         return $this->dischi;
     }
+
+    public function setDischi(array $d): void
+    {
+        $this->dischi = $d;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToStringDischi(): string
+    {
+        $a = "";
+        $out = implode(";",array_map(function($a) {return implode("",$a);},$this->getDischi()));
+        $out =$out .";";
+        //}
+        return $out;
+    }
+
+
 
 
 

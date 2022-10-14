@@ -45,19 +45,12 @@ class FOrdine{
         $CAPSped = $rows[0]['CAPSped'];
         $IndirizzoSped = $rows[0]['IndirizzoSped'];
         $ModPagamento = $rows[0]['ModPagamento'];
-        $Dischi = $rows[0]['Dischi'];
+        $Dischi = $rows[0]['Dischi'];  //TODO: da mettere ECarrello
         $TotOrdine = $rows[0]['TotOrdine'];
         $IdCliente = $rows[0]['IdCliente'];
 
         $ordine = new EOrdine($IdCliente);
-        /*
-        $ordine->setIdOrdine($IdOrdine);
-        $ordine->setCittaSpe($CittàSpe);
-        $ordine->setCapSped($CAPSped);
-        $ordine->setIndirizzoSped($IndirizzoSped);
-        $ordine->setModPagamento($ModPagamento);
-        $ordine->setTotOrdine($TotOrdine);
-        */
+
         $ordine->Compile($IdOrdine, $CittàSpe, $CAPSped, $IndirizzoSped, $ModPagamento, $TotOrdine);
 
         return $ordine;

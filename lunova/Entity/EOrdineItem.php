@@ -7,7 +7,7 @@
  */
 class EOrdineItem {
     
-    private string $IdOrdineItem
+    private string $IdOrdineItem;
     
     private int $quantity;
     
