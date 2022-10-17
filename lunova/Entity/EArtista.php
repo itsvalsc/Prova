@@ -14,14 +14,14 @@ class EArtista extends EUtente{
 
 	public function __construct( string $n, string $c, string $v, string $nc, string $citta, string $prov, string $cap, string $telefono, string $email, string $pw, string $iban) {
 
-		parent::__construct(($n, $c, $v, $nc, $citta, $prov, $cap, $telefono, $email, $pw);
+		parent::__construct($n, $c, $v, $nc, $citta, $prov, $cap, $telefono, $email, $pw);
 		parent::setLivello("B");
 		$this->IdArtista = "B" . random_int(0 , 100);
 		$this->IBAN = $iban;
 	}
 
 	public function addAlbum(EDisco $d){
-		array_push($this->Album, $d)
+		array_push($this->Album, $d);
 	}	
 
 

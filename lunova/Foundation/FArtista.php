@@ -118,10 +118,13 @@ class FArtista{
 
                 $utente = new EClient($Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Email,$Password,null,$IdArtista);
                 return $utente;
+                //TODO: aggiustare costruttore per artista e cliente, ad artista aggiungere e recupare l'IBAN
             }
             else {return "Non ci sono clienti";}
         }
         catch (PDOException $exception) { print ("Errore".$exception->getMessage());}
+
+
 
     }
 
