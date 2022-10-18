@@ -1,5 +1,6 @@
 <?php
 class FArtista{
+
     public static function exist($email) : bool {
 
         $pdo = FConnectionDB::connect();
@@ -18,25 +19,25 @@ class FArtista{
 
     /**
      * Memorizza un'istanza di EArtista sul database
-     * @param EArtista $cliente
+     * @param EArtista $artista
      */
-    public static function store(EArtista $cliente): void {
+    public static function store(EArtista $artista): void {
         $pdo = FConnectionDB::connect();
         $query = "INSERT INTO artista VALUES(:IdArtista,:Email,:Nome,:Cognome,:Via,:NCivico,:Provincia,:Citta,:CAP,:NTelefono,:Password,:Livello)";
         $stmt = $pdo->prepare($query);
         $stmt->execute(array(
-            ':IdArtista' => $cliente->getIdArtista(),
-            ':Email' => $cliente->getEmail(),
-            ':Nome'  =>$cliente->getNome(),
-            ':Cognome' =>$cliente->getCognome(),
-            ':Via' =>$cliente->getVia(),
-            ':NCivico' =>$cliente->getNumeroCivico(),
-            ':Provincia' =>$cliente->getProvincia(),
-            ':Citta' =>$cliente->getCitta(),
-            ':CAP' =>$cliente->getCAP(),
-            ':NTelefono' =>$cliente->getTelefono(),
-            ':Password' =>$cliente->getPassword(),
-            ':Livello' =>$cliente->getLivello()
+            ':IdArtista' => $artista->getIdArtista(),
+            ':Email' => $artista->getEmail(),
+            ':Nome'  =>$artista->getNome(),
+            ':Cognome' =>$artista->getCognome(),
+            ':Via' =>$artista->getVia(),
+            ':NCivico' =>$artista->getNumeroCivico(),
+            ':Provincia' =>$artista->getProvincia(),
+            ':Citta' =>$artista->getCitta(),
+            ':CAP' =>$artista->getCAP(),
+            ':NTelefono' =>$artista->getTelefono(),
+            ':Password' =>$artista->getPassword(),
+            ':Livello' =>$artista->getLivello()
         ));
     }
 
@@ -52,7 +53,7 @@ class FArtista{
         $stmt->execute( [":email" => $email] );
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $Idcliente = $rows[0]['IdArtista'];
+        $IdArtista = $rows[0]['IdArtista'];
         $Email = $rows[0]['Email'];
         $Nome = $rows[0]['Nome'];
         $Cognome = $rows[0]['Cognome'];
@@ -65,7 +66,7 @@ class FArtista{
         $Password = $rows[0]['Password'];
         $Livello = $rows[0]['Livello'];
 
-        $utente = new EClient($Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Email,$Password,null,$Idcliente);
+        $utente = new EArtista($Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Email,$Password,null,$IdArtista);
 
 
         return $utente;
@@ -116,16 +117,13 @@ class FArtista{
                 $Password = $rows[0]['Password'];
                 // $Livello = $rows[0]['Livello'];
 
-                $utente = new EClient($Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Email,$Password,null,$IdArtista);
+                $utente = new EArtista($Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Email,$Password,null,$IdArtista);
                 return $utente;
                 //TODO: aggiustare costruttore per artista e cliente, ad artista aggiungere e recupare l'IBAN
             }
-            else {return "Non ci sono clienti";}
+            else {return "Non ci sono artisti";}
         }
         catch (PDOException $exception) { print ("Errore".$exception->getMessage());}
-
-
-
     }
 
 
