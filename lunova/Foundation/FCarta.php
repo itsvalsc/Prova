@@ -37,7 +37,7 @@ class FCarta
     {
         $pdo = FConnectionDB::connect();
 
-        $query = "SELECT * FROM ordine WHERE NCarta= :idcar";
+        $query = "SELECT * FROM carta WHERE NCarta= :idcar";
         $stmt = $pdo->prepare($query);
         $stmt->execute([":idcar" => $idcar]);
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -61,7 +61,7 @@ class FCarta
         try {
             $ifExist = self::exist($idcar);
             if ($ifExist) {
-                $query = "DELETE FROM ordine WHERE NCarta= :idcar";
+                $query = "DELETE FROM carta WHERE NCarta= :idcar";
                 $stmt = $pdo->prepare($query);
                 $stmt->execute([":idcar" => $idcar]);
                 return true;
