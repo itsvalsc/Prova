@@ -10,6 +10,12 @@ require_once "Foundation/FDisco.php";
 require_once "Entity/EDisco.php";
 require_once "Entity/EOrdine.php";
 require_once "Foundation/FOrdine.php";
+require_once "Entity/ESondaggio.php";
+require_once "Entity/ERichiesta.php";
+require_once "Foundation/FSondaggio.php";
+require_once "Foundation/FRichiesta.php";
+require_once "Entity/EVotazione.php";
+require_once "Foundation/FVotazione.php";
 
 //$utt = new EClient("luigi","bart","via ciao","1","Vzzano","AQ","67051","1234567890","l@l.com","passwd",null);
 
@@ -25,8 +31,15 @@ require_once "Foundation/FOrdine.php";
 
 //print_r($b);
 
-$s = new EOrdine('34567');
-$s->Compile('34567','roma','00100','pizza', 'carta', '33');
-$s->setIdCliente('67890');
-$f = FOrdine::store($s);
+//$s = new EOrdine('34567');
+//$s->Compile('34567','roma','00100','pizza', 'carta', '33');
+//$s->setIdCliente('67890')
+//$f = FOrdine::store($s);
+
+
+$a = FSondaggio::load_incorso();
+
+print_r($a);
+
+
 
