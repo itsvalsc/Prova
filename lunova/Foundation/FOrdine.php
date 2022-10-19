@@ -1,5 +1,6 @@
 <?php
 class FOrdine{
+
     public static function exist($id) : bool {
 
         $pdo = FConnectionDB::connect();

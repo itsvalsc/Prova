@@ -149,7 +149,7 @@ class FDisco {
     {
         $pdo=FConnectionDB::connect();
 
-        $query = "UPDATE dischi SET " . $campo . " = :valore  WHERE  ID = :id";
+        $query = "UPDATE wallet SET " . $campo . " = :valore  WHERE  IdWallet = :id";
         $stmt = $pdo->prepare($query);
         $stmt->execute([":id" => $id , ":valore" => $valore]);
         return true;
