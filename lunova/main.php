@@ -16,6 +16,7 @@ require_once "Foundation/FSondaggio.php";
 require_once "Foundation/FRichiesta.php";
 require_once "Entity/EVotazione.php";
 require_once "Foundation/FVotazione.php";
+require_once "Foundation/FPersistentManager.php";
 
 //$utt = new EClient("luigi","bart","via ciao","1","Vzzano","AQ","67051","1234567890","l@l.com","passwd",null);
 
@@ -36,10 +37,17 @@ require_once "Foundation/FVotazione.php";
 //$s->setIdCliente('67890')
 //$f = FOrdine::store($s);
 
+//$b=new ERichiesta('dc4',"2022-10-10");
 
-$a = FSondaggio::load_incorso();
+$a = FPersistentManager::getInstance();
+$c = '1';
+$b = $a->exist("FSondaggio",$c);
+//$a = FSondaggio::load('1');
+print_r($b);
 
-print_r($a);
+
+
+
 
 
 

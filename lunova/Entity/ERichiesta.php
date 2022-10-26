@@ -5,9 +5,7 @@ class ERichiesta
 private string $disco;
 private string $data;
 
-    public function __construct(string $disc, string $dat){
-        $this->disco = $disc;
-        $this->data = $dat;
+    public function __construct(){;
     }
 
 

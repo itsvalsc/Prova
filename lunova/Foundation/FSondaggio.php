@@ -46,15 +46,15 @@ class FSondaggio
         $voti_disco_3 = $rows[0]['voti_disco3'];
         $data = $rows[0]['data'];
         $in_corso = $rows[0]['in_corso'];
-        $sondaggio = new ESondaggio();
+        $sondaggio = new ESondaggio($disco_1,$disco_2,$disco_3,$data);
         $sondaggio->setId($id);
-        $sondaggio->setDisco1($disco_1);
+        //$sondaggio->setDisco1($disco_1);
         $sondaggio->setVotiDisco1($voti_disco_1);
-        $sondaggio->setDisco2($disco_2);
+        //$sondaggio->setDisco2($disco_2);
         $sondaggio->setVotiDisco2($voti_disco_2);
-        $sondaggio->setDisco3($disco_3);
+        //$sondaggio->setDisco3($disco_3);
         $sondaggio->setVotiDisco3($voti_disco_3);
-        $sondaggio->setData($data);
+        //$sondaggio->setData($data);
         $sondaggio->setInCorso($in_corso);
         return $sondaggio;
     }

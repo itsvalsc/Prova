@@ -32,7 +32,7 @@ class FRichiesta
     public static function store(ERichiesta $richiesta): bool
     {
         $pdo = FConnectionDB::connect();
-        $stmt = $pdo->prepare("INSERT INTO richieste_sondaggi VALUES :disco, :data)");
+        $stmt = $pdo->prepare("INSERT INTO richieste_sondaggi VALUES (:disco, :data)");
 
         $ris = $stmt->execute(array(
             ':disco' => $richiesta->getDisco(),

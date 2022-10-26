@@ -17,7 +17,7 @@ class FVotazione
     public static function store(EVotazione $votazione): bool
     {
         $pdo = FConnectionDB::connect();
-        $stmt = $pdo->prepare("INSERT INTO votazioni VALUES :utente, :sondaggio , :disco)");
+        $stmt = $pdo->prepare("INSERT INTO votazioni VALUES (:utente, :sondaggio , :disco)");
 
         $ris = $stmt->execute(array(
             ':utente' => $votazione->getUtente(),
