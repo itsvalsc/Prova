@@ -101,6 +101,50 @@ class FCarrello{
     }
 
 
+    public static function calcoloTot(string $id_or): float {
+        $pdo=FConnectionDB::connect();
+
+        $query = "SELECT * FROM carrello WHERE id_ordine= :idor";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute( [":idor" => $id_or] );
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+        $queryy = "SELECT price FROM dischi WHERE ID= :idp";
+
+
+        $lista = $rows[0]['lista'];
+
+        $line = explode(";", $lista);
+        $tot_sing= 0;
+
+        for ($i=0; $i < count($line) -2; ++$i) {
+
+            if ($i>0)++$i;
+
+            $a= $i;
+            $b = 1 +$i;
+            $elenco[$i] =array ('prodotto' => "$line[$a]",
+                'quantità' => "$line[$b]");
+
+
+            $stmt2 = $pdo->prepare($queryy);
+            $stmt2->execute( [":idp" => $line[$a]] );
+            $rowss = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+            $tot_sing = $tot_sing + ( $line[$b] * ($rowss[0]['price']) );
+
+
+
+        }
+        print($tot_sing);
+        return $tot_sing;
+    }
+
+
+
+
+
 
 
 }
