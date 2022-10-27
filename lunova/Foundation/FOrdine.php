@@ -46,9 +46,11 @@ class FOrdine{
         $CAPSped = $rows[0]['CAPSped'];
         $IndirizzoSped = $rows[0]['IndirizzoSped'];
         $ModPagamento = $rows[0]['ModPagamento'];
-        $Dischi = $rows[0]['Dischi'];  //TODO: da mettere ECarrello
         $TotOrdine = $rows[0]['TotOrdine'];
         $IdCliente = $rows[0]['IdCliente'];
+
+        $carrello = new ECarrello($IdCliente) ; //TODO: da mettere ECarrello [da controllare]
+        $carrello->setDischi(FCarrello::loadlista($IdOrdine));
 
         $ordine = new EOrdine($IdCliente);
 

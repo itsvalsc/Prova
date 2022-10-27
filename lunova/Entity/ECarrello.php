@@ -60,8 +60,8 @@ class ECarrello
             $lista=func_get_arg(3);
             $this->id=$idcar;
             $this->id_ordine = $id_ordine;
-            $this->dischi= $lista;
-            $this->totale=0; //TODO: funzione di calcolo del totale
+            $this->dischi = $lista;
+            $this->totale = FCarrello::calcoloTot($id_ordine); //TODO: funzione di calcolo del totale
             $this->id_utente=$id_cliente;
             $this->pagato=0;
 
