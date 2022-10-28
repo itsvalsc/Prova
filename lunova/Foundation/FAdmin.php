@@ -1,8 +1,8 @@
 <?php
 
 	class FAdmin{
-		private static $class = "FAdmin"
-		private static $table = "admin"
+		private static $class = "FAdmin";
+		private static $table = "admin";
 		private static $values = ":IdAdmin:Email,:Nome,:Cognome,:Via,:NCivico,:Provincia,:Citta,:CAP,:NTelefono,:Password,:Livello)";
 
 		public function __construct(){}

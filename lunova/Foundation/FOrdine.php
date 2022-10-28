@@ -54,7 +54,7 @@ class FOrdine{
 
         $ordine = new EOrdine($IdCliente);
 
-        $ordine->Compile($IdOrdine, $CittàSpe, $CAPSped, $IndirizzoSped, $ModPagamento, $TotOrdine);
+        $ordine->Compile($IdOrdine, $CittàSpe, $CAPSped, $IndirizzoSped, $ModPagamento, $TotOrdine,$carrello );
 
         return $ordine;
     }

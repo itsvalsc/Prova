@@ -98,7 +98,7 @@ class EOrdine {
         }
     }
 
-    public function Compile($IdOrdine, $CittàSpe, $CAPSped, $IndirizzoSped, $ModPagamento, $TotOrdine): void
+    public function Compile($IdOrdine, $CittàSpe, $CAPSped, $IndirizzoSped, $ModPagamento, $TotOrdine, ECarrello $car): void
     {
         $this->setIdOrdine($IdOrdine);
         $this->setCittaSpe($CittàSpe);
@@ -106,6 +106,7 @@ class EOrdine {
         $this->setIndirizzoSped($IndirizzoSped);
         $this->setModPagamento($ModPagamento);
         $this->setTotOrdine($TotOrdine);
+        $this->setCarrello($car);
     }
 
 
