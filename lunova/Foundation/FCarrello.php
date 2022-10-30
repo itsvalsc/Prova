@@ -43,6 +43,7 @@ class FCarrello{
         return $elenco;
     }
 
+    //TODO: aggiungere prelevare il carrello per utente
     public static function load(string $id_or): ECarrello {
         $pdo=FConnectionDB::connect();
 

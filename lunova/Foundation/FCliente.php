@@ -65,7 +65,7 @@ class FCliente
     /**
      * Carica in RAM l'istanza di EClient che possiede l' email fornita
      * @param EClient $cliente
-     */
+
     public static function load(string $email) : EClient {
         $pdo=FConnectionDB::connect();
 
@@ -92,6 +92,8 @@ class FCliente
 
         return $utente;
     }
+    */
+
 
     public static function delete(string $email) {
         $pdo=FConnectionDB::connect();
@@ -110,7 +112,7 @@ class FCliente
 
     }
 
-    public static function prelevaCliente(string $email) {
+    public static function load(string $email) {
         $pdo=FConnectionDB::connect();
 
         try {
@@ -132,7 +134,7 @@ class FCliente
                 $CAP = $rows[0]['CAP'];
                 $Telefono = $rows[0]['NTelefono'];
                 $Password = $rows[0]['Password'];
-               // $Livello = $rows[0]['Livello'];
+               //$Livello = $rows[0]['Livello'];
 
                 $utente = new EClient($Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Email,$Password,null,$Idcliente);
                 return $utente;
@@ -140,6 +142,28 @@ class FCliente
             else {return "Non ci sono clienti";}
         }
         catch (PDOException $exception) { print ("Errore".$exception->getMessage());}
+
+    }
+
+    public static function update(EClient $cl) : bool{
+        $pdo = FConnectionDB::connect();
+        $query = "UPDATE cliente SET IdCliente = :id, Email = :email, Nome = :nome, Cognome = :cognome,Via = :via, NCivico = :ncivico, Provincia = :provincia, Citta = :citta, CAP = :cap,NTelefono = :ntelefono, Password = :password, Livello = :livello   WHERE Email = :email";
+        $stmt=$pdo->prepare($query);
+        $ris = $stmt->execute(array(
+            ":id" => $cl->getIdClient(),
+            ":email" => $cl->getEmail(),
+            ":nome" => $cl->getNome(),
+            ":cognome" => $cl->getCognome(),
+            ":via" => $cl->getVia(),
+            ":ncivico" => $cl->getNumeroCivico(),
+            ":provincia" => $cl->getProvincia(),
+            ":citta" => $cl->getCitta(),
+            ":cap" => $cl->getCAP(),
+            ":ntelefono" => $cl->getTelefono(),
+            ":password" => $cl->getPassword(),
+            ":livello" => $cl->getLivello()));
+
+        return $ris;
 
     }
 }

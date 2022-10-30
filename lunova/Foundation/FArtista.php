@@ -44,7 +44,7 @@ class FArtista{
     /**
      * Carica in RAM l'istanza di EArtista che possiede l' email fornita
      * @param EArtista $artista
-     */
+
     public static function load(string $email) : EArtista {
         $pdo=FConnectionDB::connect();
 
@@ -71,7 +71,7 @@ class FArtista{
 
         return $utente;
     }
-
+    */
 
 
     public static function delete(string $email) {
@@ -93,7 +93,7 @@ class FArtista{
 
 
 
-    public static function prelevaArtista(string $email) {
+    public static function load(string $email) {
         $pdo=FConnectionDB::connect();
 
         try {
@@ -126,6 +126,28 @@ class FArtista{
         catch (PDOException $exception) { print ("Errore".$exception->getMessage());}
     }
 
+    //TODO:finire update artista
+    public static function update(EArtista $art) : bool{
+        $pdo = FConnectionDB::connect();
+        $query = "UPDATE cliente SET IdCliente = :id, Email = :email, Nome = :nome, Cognome = :cognome,Via = :via, NCivico = :ncivico, Provincia = :provincia, Citta = :citta, CAP = :cap,NTelefono = :ntelefono, Password = :password, Livello = :livello   WHERE Email = :email";
+        $stmt=$pdo->prepare($query);
+        $ris = $stmt->execute(array(
+            ":id" => $cl->getIdClient(),
+            ":email" => $cl->getEmail(),
+            ":nome" => $cl->getNome(),
+            ":cognome" => $cl->getCognome(),
+            ":via" => $cl->getVia(),
+            ":ncivico" => $cl->getNumeroCivico(),
+            ":provincia" => $cl->getProvincia(),
+            ":citta" => $cl->getCitta(),
+            ":cap" => $cl->getCAP(),
+            ":ntelefono" => $cl->getTelefono(),
+            ":password" => $cl->getPassword(),
+            ":livello" => $cl->getLivello()));
+
+        return $ris;
+
+    }
 
 
 
