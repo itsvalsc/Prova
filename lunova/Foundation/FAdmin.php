@@ -1,66 +1,90 @@
 <?php
 
 	class FAdmin{
-		private static $class = "FAdmin";
-		private static $table = "admin";
-		private static $values = ":IdAdmin:Email,:Nome,:Cognome,:Via,:NCivico,:Provincia,:Citta,:CAP,:NTelefono,:Password,:Livello)";
 
-		public function __construct(){}
+        public static function exist($email) : bool {
 
-		public static function getTable(): string
-		{ return self::$table; }
+            $pdo = FConnectionDB::connect();
+            $query = "SELECT * FROM admin WHERE Email = :email";
+            $stmt= $pdo->prepare($query);
+            $stmt->execute([":email" => $email]);
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (count($rows)==0){
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
 
-		public static function getClass(): string
-		{ return self::$class; }
+        public static function store(EAdmin $admin): void {
 
-		public static function getValues(): string
-		{ return self::$values; }
+            $pdo = FConnectionDB::connect();
+            $query = "INSERT INTO admin VALUES(:IdAmministratore,:Email,:Nome,:Cognome,:Via,:NCivico,:Provincia,:Citta,:CAP,:NTelefono,:Password,:Livello)";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute(array(
+                ':IdAmministratore' => $admin->getIdAmministratore(),
+                ':Email' => $admin->getEmail(),
+                ':Nome'  =>$admin->getNome(),
+                ':Cognome' =>$admin->getCognome(),
+                ':Via' =>$admin->getVia(),
+                ':NCivico' =>$admin->getNumeroCivico(),
+                ':Provincia' =>$admin->getProvincia(),
+                ':Citta' =>$admin->getCitta(),
+                ':CAP' =>$admin->getCAP(),
+                ':NTelefono' =>$admin->getTelefono(),
+                ':Password' =>$admin->getPassword(),
+                ':Livello' =>$admin->getLivello()
+            ));
+        }
 
-		public static function bind($statement, EAdmin $admin, $foreignkey){
-			$statement->bindValue(":IdAdmin", $admin->getIdAdmin, PDO::PARAM_STR);
-			$statement->bindValue(":Nome", $admin->getNome, PDO::PARAM_STR);
-			$statement->bindValue(":Cognome", $admin->getCognome, PDO::PARAM_STR);
-			$statement->bindValue(":Via", $admin->getVia, PDO::PARAM_STR);
-			$statement->bindValue(':NCivico',$admin->getNumeroCivico(), PDO::PARAM_STR);
-	        $statement->bindValue(':Provincia',$admin->getProvincia(), PDO::PARAM_STR);
-	        $statement->bindValue(':Citta',$admin->getCitta(), PDO::PARAM_STR);
-	        $statement->bindValue(':CAP',$admin->getCAP(), PDO::PARAM_STR);
-	        $statement->bindValue(':NTelefono',$admin->getTelefono(), PDO::PARAM_STR);
-	        $statement->bindValue(':Password', password_hash($admin->getPassword(),PASSWORD_DEFAULT), PDO::PARAM_STR);
-	        $statement->bindValue(':Livello',$admin->getLivello(), PDO::PARAM_STR);
-    	}
+        public static function load(string $email) {
+            $pdo=FConnectionDB::connect();
 
-    	public static function loadAdmin($etichetta,$id){
-    		$connection = FPersistentManager::getInstance();
-    		$result = $connection->load(static::getClass(),$etichetta,$id);
-    		$resultAdmn = $result[0];
-    		$admn = new EAdmin($resultAdmn["Nome"],$resultAdmn["Cognome"],,$resultAdmn["Via"],$resultAdmn["NCivico"],$resultAdmn["Provincia"],$resultAdmn["Citta"],$resultAdmn["CAP"],$resultAdmn["NTelefono"],$resultAdmn["Email"],$resultAdmn["Password"]);
-    		$admn = setAdmin($resultAdmn["IdAdmin"]);
-    		return $admn;
-    	}
+            try {
+                $ifExist = self::exist($email);
+                if($ifExist) {
+                    $query = "SELECT * FROM admin WHERE Email= :email";
+                    $stmt = $pdo->prepare($query);
+                    $stmt->execute( [":email" => $email] );
+                    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    	public static function login($email, $pw){
-    		$pers = FPersistentManager::getInstance();
-    		$query = "SELECT * FROM" . FAdmin::getClass . "WHERE" . "Email" . "='" . $email . "';";
-    		$queryready = $pers->connection->db->prepare($query);
-    		$queryready = execute();
-    		$result = $queryready->fetchAll(PDO:FETCH_ASSOC);
-    		If(count($results)>0){
-    			$hash = $result[0]["Password"];
-    			$log = password_verify($pw,$hash);
-    			if ($log){
-    				$resultAdmn = $result[0];
-    				$Admn = new EAdmin( $resultAdmn["Nome"],$resultAdmn["Cognome"],$resultAdmn["Via"],$resultAdmn["NCivico"],$resultAdmn["Provincia"],$resultAdmn["Citta"],$resultAdmn["CAP"],$resultAdmn["NTelefono"],$resultAdmn["Email"],$resultAdmn["Password"]);)
-					$Admn = setIdAdmin($result["IdAdmin"]);
-					return $Admn;
-    			}
-    			else { return null;}
-    		}
-    		else { return null;}	
- 
-    	}
+                    $IdAmministratore = $rows[0]['IdAmministratore'];
+                    $Email = $rows[0]['Email'];
+                    $Nome = $rows[0]['Nome'];
+                    $Cognome = $rows[0]['Cognome'];
+                    $Via = $rows[0]['Via'];
+                    $NumeroCivico = $rows[0]['NCivico'];
+                    $Provincia = $rows[0]['Provincia'];
+                    $Citta = $rows[0]['Citta'];
+                    $CAP = $rows[0]['CAP'];
+                    $Telefono = $rows[0]['NTelefono'];
+                    $Password = $rows[0]['Password'];
+                    // $Livello = $rows[0]['Livello'];
 
-		
-	}
+                    $utente = new EAdmin($IdAmministratore,$Email,$Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Password);
+                    return $utente;
+                }
+                else {return "Non ci sono amministratori";}
+            }
+            catch (PDOException $exception) { print ("Errore".$exception->getMessage());}
+        }
 
+        public static function delete(string $email) {
+            $pdo=FConnectionDB::connect();
+
+            try {
+                $ifExist = self::exist($email);
+                if($ifExist) {
+                    $query = "DELETE FROM admin WHERE Email= :email";
+                    $stmt = $pdo->prepare($query);
+                    $stmt->execute([":email" => $email]);
+                    return true;
+                }
+                else{ return false;}
+            }
+            catch(PDOException $exception) {print("Errore".$exception->getMessage());}
+
+        }
+    }
 ?>

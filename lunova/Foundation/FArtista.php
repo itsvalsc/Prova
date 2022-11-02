@@ -91,8 +91,6 @@ class FArtista{
 
     }
 
-
-
     public static function load(string $email) {
         $pdo=FConnectionDB::connect();
 
