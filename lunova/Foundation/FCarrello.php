@@ -17,12 +17,12 @@ class FCarrello{
         }
     }
 
-    public static function loadlista(string $id_or): array {
+    public static function loadlista(string $id_cli): array {
         $pdo=FConnectionDB::connect();
 
-        $query = "SELECT * FROM carrello WHERE id_ordine= :idor";
+        $query = "SELECT * FROM carrello WHERE id_cliente= :idcli";
         $stmt = $pdo->prepare($query);
-        $stmt->execute( [":idor" => $id_or] );
+        $stmt->execute( [":idcli" => $id_cli] );
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
@@ -43,16 +43,17 @@ class FCarrello{
         return $elenco;
     }
 
-    public static function load(string $id_or): ECarrello {
+    public static function load(string $id_cli): ECarrello {
         $pdo=FConnectionDB::connect();
 
-        $query = "SELECT * FROM carrello WHERE id_ordine= :idor";
+        $query = "SELECT * FROM carrello WHERE id_cliente= :idcli";
         $stmt = $pdo->prepare($query);
-        $stmt->execute( [":idor" => $id_or] );
+        $stmt->execute( [":idcli" => $id_cli] );
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $id = $rows[0]['id'];
         $id_cliente = $rows[0]['id_cliente'];
+        $id_ordine = $rows[0]['id_ordine'];
         $lista = $rows[0]['lista'];
 
         $line = explode(";", $lista);
@@ -66,7 +67,7 @@ class FCarrello{
                 'quantità' => "$line[$b]");
 
         }
-        $ris = new ECarrello($id,$id_cliente, $id_or, $elenco);
+        $ris = new ECarrello($id,$id_cliente, $id_ordine, $elenco);
         $ris->setDischi($elenco);
         return $ris;
     }
