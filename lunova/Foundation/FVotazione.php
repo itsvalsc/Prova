@@ -2,7 +2,7 @@
 
 class FVotazione
 {
-    public static function exist_votazione(string $ut,string $sondaggio): bool {
+    public static function exist(string $ut,string $sondaggio): bool {
         $pdo = FConnectionDB::connect();
         $stmt = $pdo->prepare("SELECT * FROM votazioni WHERE utente = :ut AND sondaggio = :sond");
         $ris = $stmt->execute(array(

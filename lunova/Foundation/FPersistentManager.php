@@ -10,8 +10,8 @@ class FPersistentManager{
 		return self::$instance;
 	}
 //TODO: dopo classi foundation aggiornare
-    public function exist(string $Fclass, $key1) : bool {
-        $ris = $Fclass::exist($key1);
+    public function exist(string $Fclass, $key1, $key2=null) : bool {
+        $ris = $Fclass::exist($key1,$key2);
         return $ris;
     }
 
@@ -43,14 +43,39 @@ class FPersistentManager{
     }
 
 
-	public function prelevaProdotti() {
-
+	public function prelevaDischi() : array {
+        return FDisco::prelevaDischi();
 	}
+    public function prelevaDischiperGen($genere):array {
+        return FDisco::prelevaDischiperGenere($genere);
+    }
+    public function prelevaDischiperAutore($aut):array{
+        return FDisco::prelevaDischiperAutore($aut);
+    }
+    public function prelevaDischiperTitolo($titolo):array{
+        return FDisco::prelevaDischiperTitolo($titolo);
+    }
+
+    public function prelevaSondaggioInCorso(){
+        $sondaggio = FSondaggio::load_incorso();
+        return $sondaggio;
+    }
+    public function prelevaSondaggi(){
+        $sondaggi = FSondaggio::prelevaSondaggi();
+        return $sondaggi;
+    }
+
+    public function prelevaRichieste(){
+        $richieste = FRichiesta::load_richieste();
+        return $richieste;
+    }
 
 
-	public function prelevaCarrello() {
+    public function prelevaOrdini($ut){
+        $ordini = FOrdine::prelevaOrdini();
+        return $ordini;
+    }
 
-	}
 
 
 

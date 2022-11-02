@@ -41,8 +41,8 @@ class FOrdine{
         $stmt->execute( [":idor" => $idor] );
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $IdOrdine = $rows[0]['IdOdine'];
-        $CittàSpe = $rows[0]['CittaSpe'];
+        $IdOrdine = $rows[0]['IdOrdine'];
+        $CittàSpe = $rows[0]['CittaSped'];
         $CAPSped = $rows[0]['CAPSped'];
         $IndirizzoSped = $rows[0]['IndirizzoSped'];
         $ModPagamento = $rows[0]['ModPagamento'];
@@ -76,6 +76,38 @@ class FOrdine{
 
     }
 
+
+
+    public static function prelevaOrdini(string $cl) : EOrdine {
+        $pdo=FConnectionDB::connect();
+
+        $query = "SELECT * FROM ordine WHERE IdCliente= :idcl";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute( [":idcl" => $ut] );
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $ordini = array();
+        foreach ($rows as $row) {
+            $IdOrdine = $rows[0]['IdOrdine'];
+            $CittàSpe = $rows[0]['CittaSped'];
+            $CAPSped = $rows[0]['CAPSped'];
+            $IndirizzoSped = $rows[0]['IndirizzoSped'];
+            $ModPagamento = $rows[0]['ModPagamento'];
+            $TotOrdine = $rows[0]['TotOrdine'];
+            $IdCliente = $rows[0]['IdCliente'];
+            $carrello = new ECarrello($IdCliente) ; //TODO: da mettere ECarrello [da controllare]
+            $carrello->setDischi(FCarrello::loadlista($IdOrdine));
+
+            $ordine = new EOrdine($IdCliente);
+
+            $ordine->Compile($IdOrdine, $CittàSpe, $CAPSped, $IndirizzoSped, $ModPagamento, $TotOrdine,$carrello );
+            $ordini[$IdOrdine]=$ordine;
+        }
+
+
+
+
+        return $ordine;
+    }
 
 
 

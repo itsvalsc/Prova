@@ -41,8 +41,8 @@ require_once "Foundation/FPersistentManager.php";
 
 $a = FPersistentManager::getInstance();
 $c = '1';
-$b = $a->exist("FSondaggio",$c);
-//$a = FSondaggio::load('1');
+$b = $a->prelevaSondaggi();
+
 print_r($b);
 
 

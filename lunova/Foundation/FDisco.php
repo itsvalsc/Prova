@@ -128,6 +128,70 @@ class FDisco {
 
     }
 
+    public static function prelevaDischiperAutore(string $aut) : array {
+        try{
+            $pdo = FConnectionDB::connect();
+            //$pdo->beginTransaction();
+
+            $stmt = $pdo->prepare("SELECT * FROM dischi WHERE artist_id = :artista");
+            $stmt->execute([":artista"=>$aut]);
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $dischi = array();
+            foreach ($rows as $row) {
+                $disc=new EDisco($row['name'],
+                    $row['artist_id'],
+                    $row['price'],
+                    $row['description'],
+                    $row['category_id'],
+                    null,
+                    $row['Qta']
+                );
+                $disc->setID($row['ID']);
+                $dischi[$row['ID']]=$disc;
+            }
+            //$pdo->commit();
+            return $dischi;
+        }
+        catch (PDOException $e){
+            print("ATTENTION ERROR: ") . $e->getMessage();
+            $pdo->rollBack();
+            return array();
+        }
+
+    }
+
+    public static function prelevaDischiperTitolo(string $ttl) : array {
+        try{
+            $pdo = FConnectionDB::connect();
+            //$pdo->beginTransaction();
+
+            $stmt = $pdo->prepare("SELECT * FROM dischi WHERE name = :titolo");
+            $stmt->execute([":titolo"=>$ttl]);
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $dischi = array();
+            foreach ($rows as $row) {
+                $disc=new EDisco($row['name'],
+                    $row['artist_id'],
+                    $row['price'],
+                    $row['description'],
+                    $row['category_id'],
+                    null,
+                    $row['Qta']
+                );
+                $disc->setID($row['ID']);
+                $dischi[$row['ID']]=$disc;
+            }
+            //$pdo->commit();
+            return $dischi;
+        }
+        catch (PDOException $e){
+            print("ATTENTION ERROR: ") . $e->getMessage();
+            $pdo->rollBack();
+            return array();
+        }
+
+    }
+
     public static function delete(string $ID_disco) {
         $pdo=FConnectionDB::connect();
 

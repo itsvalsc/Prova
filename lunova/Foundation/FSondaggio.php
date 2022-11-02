@@ -132,6 +132,31 @@ class FSondaggio
         FSondaggio::store_votazione($sondaggio);//ricordarsi di costruire nelle view l oggetto sondaggio corretto con l utente e la votazione
     }
 
+    public static function prelevaSondaggi(): array {
+        $pdo = FConnectionDB::connect();
+        $stmt = $pdo->prepare("SELECT * FROM sondaggi");
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $sondaggi = array();
+        foreach ($rows as $row) {
+            $sondaggio=new ESondaggio(
+                $row['disco1'],
+                $row['disco2'],
+                $row['disco3'],
+                $row['data']
+            );
+            $sondaggio->setId( $row['id']);
+            $sondaggio->setVotiDisco1( $row['voti_disco1']);
+            $sondaggio->setVotiDisco2( $row['voti_disco2']);
+            $sondaggio->setVotiDisco3( $row['voti_disco3']);
+            $sondaggio->setInCorso( $row['in_corso']);
+
+
+            $sondaggi[$row['id']]=$sondaggio;
+        }
+        return $sondaggi;
+    }
+
 
     /**
     //fare il controllo se l'utente ha gia votato
