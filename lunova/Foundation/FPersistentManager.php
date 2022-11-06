@@ -76,6 +76,17 @@ class FPersistentManager{
         return $ordini;
     }
 
+    public function prelevaDischiSondaggio(ESondaggio $sondaggio): array {
+        $disco1 = $sondaggio->getDisco1();
+        $disco2 = $sondaggio->getDisco2();
+        $disco3 = $sondaggio->getDisco3();
+        $load_disco1 = $pm->load("FDisco",$disco1);
+        $load_disco2 = $pm->load("FDisco",$disco2);
+        $load_disco3 = $pm->load("FDisco",$disco3);
+        $dischi = array($load_disco1,$load_disco2,$load_disco3);
+        return $dischi;
+    }
+
 
 
 

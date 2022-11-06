@@ -14,30 +14,15 @@ class ECarrello
 
     private string $id_ordine;
 
-    private bool $pagato;
-
     private float $totale;
 
 
-    //TODO: fare un array associativo con dischi e quantità + metodi per modifica quantità
-
-/**
-     * @return bool|int
-     */
-    public function getPagato(): bool|int
-    {
-        return $this->pagato;
-    }
+    //TODO: fare un array associativo con dischi e quantità + metodi per modifica quantità (FATTO ?)
 
 
 
-    /**
-     * @param bool|int $pagato
-     */
-    public function setPagato(bool|int $pagato): void
-    {
-        $this->pagato = $pagato;
-    }
+
+
 
     /**
      * @param string $id
@@ -51,7 +36,6 @@ class ECarrello
             $this->dischi = array();
             $this->totale = 0.0;
             $this->id_utente=$ut;
-            $this->pagato = 0;
         }
         elseif (4 === func_num_args()){
             $idcar=func_get_arg(0);
@@ -63,7 +47,7 @@ class ECarrello
             $this->dischi = $lista;
             $this->totale = FCarrello::calcoloTot($id_ordine); //TODO: funzione di calcolo del totale
             $this->id_utente=$id_cliente;
-            $this->pagato=0;
+
 
 
         }
