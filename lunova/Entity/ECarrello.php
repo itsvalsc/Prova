@@ -37,15 +37,16 @@ class ECarrello
             $this->totale = 0.0;
             $this->id_utente=$ut;
         }
-        elseif (4 === func_num_args()){
+        elseif (5 === func_num_args()){
             $idcar=func_get_arg(0);
             $id_cliente=func_get_arg(1);
             $id_ordine=func_get_arg(2);
             $lista=func_get_arg(3);
+            $tot=func_get_arg(4);
             $this->id=$idcar;
             $this->id_ordine = $id_ordine;
             $this->dischi = $lista;
-            $this->totale = FCarrello::calcoloTot($id_ordine); //TODO: funzione di calcolo del totale
+            $this->totale = $tot;
             $this->id_utente=$id_cliente;
 
 

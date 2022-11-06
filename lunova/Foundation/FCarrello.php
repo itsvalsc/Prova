@@ -66,7 +66,8 @@ class FCarrello{
                 'quantità' => "$line[$b]");
 
         }
-        $ris = new ECarrello($id,$id_cliente, $id_or, $elenco);
+        $tot = FCarrello::calcoloTot($id);
+        $ris = new ECarrello($id,$id_cliente, $id_or, $elenco, $tot);
         $ris->setDischi($elenco);
         return $ris;
     }
