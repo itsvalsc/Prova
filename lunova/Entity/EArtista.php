@@ -12,13 +12,45 @@ class EArtista extends EUtente{
 
 	private string $IBAN;
 
-	public function __construct( string $n, string $c, string $v, string $nc, string $citta, string $prov, string $cap, string $telefono, string $email, string $pw, string $iban) {
 
-		parent::__construct($n, $c, $v, $nc, $citta, $prov, $cap, $telefono, $email, $pw);
-		parent::setLivello("B");
-		$this->IdArtista = "B" . random_int(0 , 100);
-		$this->IBAN = $iban;
-	}
+    public function __construct(){
+        if (11 === func_num_args()){
+            $n = func_get_arg(0);
+            $c = func_get_arg(1);
+            $v = func_get_arg(2);
+            $nc = func_get_arg(3);
+            $citta = func_get_arg(4);
+            $prov = func_get_arg(5);
+            $cap = func_get_arg(6);
+            $telefono = func_get_arg(7);
+            $email = func_get_arg(8);
+            $pw = func_get_arg(9);
+            $iban = func_get_arg(10);
+
+            parent::__construct($n, $c, $v, $nc,$citta,$prov,$cap,$telefono,$email,$pw);
+            parent::setLivello("B");
+            $this->IdArtista = "B"  . random_int(0,100);
+            $this->IBAN = $iban;
+        }
+        elseif (12 === func_num_args()){
+            $n = func_get_arg(0);
+            $c = func_get_arg(1);
+            $v = func_get_arg(2);
+            $nc = func_get_arg(3);
+            $citta = func_get_arg(4);
+            $prov = func_get_arg(5);
+            $cap = func_get_arg(6);
+            $telefono = func_get_arg(7);
+            $email = func_get_arg(8);
+            $pw = func_get_arg(9);
+            $iban = func_get_arg(10);
+            $id_artista = func_get_arg(11);
+            parent::__construct($n, $c, $v, $nc,$citta,$prov,$cap,$telefono,$email,$pw);
+            parent::setLivello("B");
+            $this->IBAN = $iban;
+            $this->IdArtista = $id_artista;
+        }
+    }
 
 	public function addAlbum(EDisco $d){
 		array_push($this->Album, $d);
@@ -32,7 +64,7 @@ class EArtista extends EUtente{
 	{ return $this->IdArtista; }
 
 	public function getIban(): string
-	{ return $this->iban; }
+	{ return $this->IBAN; }
 
 
 
@@ -42,7 +74,7 @@ class EArtista extends EUtente{
 	{ $this->IdArtista = $a; }
 
 	public function setIban(string $i): void
-	{ $this->iban = $i; }
+	{ $this->IBAN = $i; }
 }
 
 ?>

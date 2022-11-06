@@ -64,6 +64,7 @@ class ECarta {
     }
 
 
+//todo : scegliere se anche l'artista puo avere la carta al posto dell'iban, e il saldo che aumenta ogni volta che un utente acquista un suo disco
 
 
 

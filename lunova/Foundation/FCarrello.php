@@ -1,6 +1,7 @@
 <?php
 class FCarrello{
 
+    //TODO: e se levassimo l'id del carrello e del cliente che sono ridondanti?
     public static function exist($id) : bool {
 
         $pdo = FConnectionDB::connect();

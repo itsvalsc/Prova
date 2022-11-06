@@ -1,6 +1,7 @@
 <?php
 class FArtista{
 
+
     public static function exist($email) : bool {
 
         $pdo = FConnectionDB::connect();

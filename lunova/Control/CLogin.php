@@ -38,4 +38,6 @@ class CLogin{
 
      //TODO : funzione verifica login da fare dopo aver scritto il persistent manager
 
+    //TODO : scegliere se unificare le tabelle di artista amministratore e artista per poter fare il login
+
 }
