@@ -1,7 +1,6 @@
 <?php
 class FArtista{
 
-
     public static function exist($email) : bool {
 
         $pdo = FConnectionDB::connect();
@@ -41,39 +40,6 @@ class FArtista{
             ':Livello' =>$artista->getLivello()
         ));
     }
-
-    /**
-     * Carica in RAM l'istanza di EArtista che possiede l' email fornita
-     * @param EArtista $artista
-
-    public static function load(string $email) : EArtista {
-        $pdo=FConnectionDB::connect();
-
-        $query = "SELECT * FROM artista WHERE Email= :email";
-        $stmt = $pdo->prepare($query);
-        $stmt->execute( [":email" => $email] );
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $IdArtista = $rows[0]['IdArtista'];
-        $Email = $rows[0]['Email'];
-        $Nome = $rows[0]['Nome'];
-        $Cognome = $rows[0]['Cognome'];
-        $Via = $rows[0]['Via'];
-        $NumeroCivico = $rows[0]['NCivico'];
-        $Provincia = $rows[0]['Provincia'];
-        $Citta = $rows[0]['Citta'];
-        $CAP = $rows[0]['CAP'];
-        $Telefono = $rows[0]['NTelefono'];
-        $Password = $rows[0]['Password'];
-        $Livello = $rows[0]['Livello'];
-
-        $utente = new EArtista($Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Email,$Password,null,$IdArtista);
-
-
-        return $utente;
-    }
-    */
-
 
     public static function delete(string $email) {
         $pdo=FConnectionDB::connect();
@@ -116,7 +82,7 @@ class FArtista{
                 $Password = $rows[0]['Password'];
                 // $Livello = $rows[0]['Livello'];
 
-                $utente = new EArtista($Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Email,$Password,null,$IdArtista);
+                $utente = new EArtista($IdArtista,$Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Email,$Password);
                 return $utente;
                 //TODO: aggiustare costruttore per artista e cliente, ad artista aggiungere e recupare l'IBAN
             }
@@ -131,21 +97,20 @@ class FArtista{
         $query = "UPDATE cliente SET IdCliente = :id, Email = :email, Nome = :nome, Cognome = :cognome,Via = :via, NCivico = :ncivico, Provincia = :provincia, Citta = :citta, CAP = :cap,NTelefono = :ntelefono, Password = :password, Livello = :livello   WHERE Email = :email";
         $stmt=$pdo->prepare($query);
         $ris = $stmt->execute(array(
-            ":id" => $cl->getIdClient(),
-            ":email" => $cl->getEmail(),
-            ":nome" => $cl->getNome(),
-            ":cognome" => $cl->getCognome(),
-            ":via" => $cl->getVia(),
-            ":ncivico" => $cl->getNumeroCivico(),
-            ":provincia" => $cl->getProvincia(),
-            ":citta" => $cl->getCitta(),
-            ":cap" => $cl->getCAP(),
-            ":ntelefono" => $cl->getTelefono(),
-            ":password" => $cl->getPassword(),
-            ":livello" => $cl->getLivello()));
+            ":id" => $art->getIdClient(),
+            ":email" => $art->getEmail(),
+            ":nome" => $art->getNome(),
+            ":cognome" => $art->getCognome(),
+            ":via" => $art->getVia(),
+            ":ncivico" => $art->getNumeroCivico(),
+            ":provincia" => $art->getProvincia(),
+            ":citta" => $art->getCitta(),
+            ":cap" => $art->getCAP(),
+            ":ntelefono" => $art->getTelefono(),
+            ":password" => $art->getPassword(),
+            ":livello" => $art->getLivello()));
 
         return $ris;
-
     }
 
 

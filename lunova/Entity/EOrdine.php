@@ -4,6 +4,7 @@
  * @package Entity
  */
 class EOrdine {
+
     private string $IdOrdine;
 
     private string $CittaSped;
@@ -28,10 +29,7 @@ class EOrdine {
         $this->carrello = new ECarrello($Idcl);
     }
 
-       
-
-
-    //metodi get
+    /** metodi get **/
 
     public function getCittaSpe(): string 
     { return $this->CittaSped; }
@@ -57,9 +55,7 @@ class EOrdine {
     public function getIdCliente(): string 
     { return $this->IdCliente;}
 
-
-
-    //metodi set
+    /**metodi set**/
 
     public function setCittaSpe(string $cittaspe): void 
     { $this->CittaSped = $cittaspe; }
@@ -86,7 +82,7 @@ class EOrdine {
     { $this->carrello = $car; }
 
 
-    // _METHODS_
+    /** _METHODS_ **/
     
     public function addDisco(EOrdineItem $orditem){
         array_push($this->Dischi, $orditem);
@@ -108,45 +104,6 @@ class EOrdine {
         $this->setTotOrdine($TotOrdine);
         $this->setCarrello($car);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 ?>

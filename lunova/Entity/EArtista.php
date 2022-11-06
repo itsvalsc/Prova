@@ -12,7 +12,6 @@ class EArtista extends EUtente{
 
 	private string $IBAN;
 
-
     public function __construct(){
         if (11 === func_num_args()){
             $n = func_get_arg(0);
@@ -56,9 +55,7 @@ class EArtista extends EUtente{
 		array_push($this->Album, $d);
 	}	
 
-
-
-	//metodi get
+    /**metodi get**/
 
 	public function getIdArtista(): string
 	{ return $this->IdArtista; }
@@ -66,9 +63,7 @@ class EArtista extends EUtente{
 	public function getIban(): string
 	{ return $this->IBAN; }
 
-
-
-	//metodi set 
+    /**metodi set**/
 
 	public function setIdArtista(string $a): void
 	{ $this->IdArtista = $a; }

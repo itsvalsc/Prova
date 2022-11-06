@@ -16,14 +16,7 @@ class ECarrello
 
     private float $totale;
 
-
     //TODO: fare un array associativo con dischi e quantità + metodi per modifica quantità (FATTO ?)
-
-
-
-
-
-
     /**
      * @param string $id
      * @param array $dischi
@@ -48,11 +41,7 @@ class ECarrello
             $this->dischi = $lista;
             $this->totale = $tot;
             $this->id_utente=$id_cliente;
-
-
-
         }
-
     }
 
     /**
@@ -77,28 +66,6 @@ class ECarrello
     public function setId(string $id): void
     {
         $this->id = $id;
-    }//
-
-    /**
-     * @param array $dischi
-     */
-    public function aggiungiDisco(EDisco $disco, int $QuantitaRichiesta): void
-    {
-        if($disco->getQuantita() >= $QuantitaRichiesta){
-            $this->dischi[$disco->getId()] = $QuantitaRichiesta;
-            $this->totale += $disco->getPrezzo() * $QuantitaRichiesta;
-        }
-        else print("Quantità non disponibile");
-
-    }
-
-    public function modificaQuantita(EDisco $disco, int $quantita): void
-    {
-        if ($disco->getQuantita() >= $quantita) {
-            $differenzaPrezzo = ($this->dischi[$disco->getId()] - $quantita) * $disco->getPrezzo();
-            $this->dischi[$disco->getId()] = $quantita;
-            $this->totale += $differenzaPrezzo;
-        }
     }
 
     /**
@@ -157,19 +124,25 @@ class ECarrello
         return $out;
     }
 
+    /**
+     * @param array $dischi
+     */
+    public function aggiungiDisco(EDisco $disco, int $QuantitaRichiesta): void
+    {
+        if($disco->getQuantita() >= $QuantitaRichiesta){
+            $this->dischi[$disco->getId()] = $QuantitaRichiesta;
+            $this->totale += $disco->getPrezzo() * $QuantitaRichiesta;
+        }
+        else print("Quantità non disponibile");
 
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public function modificaQuantita(EDisco $disco, int $quantita): void
+    {
+        if ($disco->getQuantita() >= $quantita) {
+            $differenzaPrezzo = ($this->dischi[$disco->getId()] - $quantita) * $disco->getPrezzo();
+            $this->dischi[$disco->getId()] = $quantita;
+            $this->totale += $differenzaPrezzo;
+        }
+    }
 }

@@ -45,9 +45,6 @@ class EUtente{
      * @param string $pw
      */
 
-
-    
-    
     public function __construct($ut)
     {
         if (5 === func_num_args()){
@@ -76,17 +73,9 @@ class EUtente{
             $this->Email = func_get_arg(8);
             $this->Password = func_get_arg(9);
                 //scelta multipla per il livello di iscrizione
-
-
-
-
-
-
         }
-
     }
     
-
     /**
      * @param string $livello
      */
