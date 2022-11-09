@@ -7,5 +7,6 @@ RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule . /~david/ADC-Store/index.php [L]
+RewriteRule . /lunova/index.php [L]
+
 </IfModule>
