@@ -9,7 +9,7 @@ class FPersistentManager{
 		}
 		return self::$instance;
 	}
-//TODO: dopo classi foundation aggiornare
+  //TODO: dopo classi foundation aggiornare
     public function exist(string $Fclass, $key1, $key2=null) : bool {
         $ris = $Fclass::exist($key1,$key2);
         return $ris;
@@ -72,7 +72,7 @@ class FPersistentManager{
 
 
     public function prelevaOrdini($ut){
-        $ordini = FOrdine::prelevaOrdini();
+        $ordini = FOrdine::prelevaOrdini($ut);
         return $ordini;
     }
 
@@ -86,9 +86,4 @@ class FPersistentManager{
         $dischi = array($load_disco1,$load_disco2,$load_disco3);
         return $dischi;
     }
-
-
-
-
-
 }

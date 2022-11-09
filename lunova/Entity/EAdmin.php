@@ -15,26 +15,11 @@ class EAdmin extends EUtente{
 		$this-> IdAdmin = "A" . random_int(0,1000);
 	}
 
-
-
-	//metodo set
+    public function getIdAmministratore(): string
+    { return $this->IdAmministratore; }
 
 	public function setIdAmministratore(string $IdAmministratore): void
-    {
-        $this->IdAmministratore = $IdAmministratore;
-    }
-
-
-
-    //metodo set
-    
-	public function getIdAmministratore(): string
-    {
-        return $this->IdAmministratore;
-    }
+    { $this->IdAmministratore = $IdAmministratore; }
 
 }
-
-
-
 ?>
