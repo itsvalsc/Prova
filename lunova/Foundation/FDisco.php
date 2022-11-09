@@ -57,7 +57,7 @@ class FDisco {
                 $disco->setID($IdDisco);
                 return $disco;
             }
-            else {return "Non ci sono clienti";}
+            else {return "Non ci sono Dischi";}
         }
         catch (PDOException $exception) { print ("Errore".$exception->getMessage());}
 
