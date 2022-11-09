@@ -9,7 +9,7 @@ class FPersistentManager{
 		}
 		return self::$instance;
 	}
-    //TODO: dopo classi foundation aggiornare[da fare]
+//TODO: dopo classi foundation aggiornare
     public function exist(string $Fclass, $key1, $key2=null) : bool {
         $ris = $Fclass::exist($key1,$key2);
         return $ris;
@@ -80,9 +80,9 @@ class FPersistentManager{
         $disco1 = $sondaggio->getDisco1();
         $disco2 = $sondaggio->getDisco2();
         $disco3 = $sondaggio->getDisco3();
-        $load_disco1 = $sondaggio->load("FDisco",$disco1);
-        $load_disco2 = $sondaggio->load("FDisco",$disco2);
-        $load_disco3 = $sondaggio->load("FDisco",$disco3);
+        $load_disco1 = FDisco::load($disco1);
+        $load_disco2 = FDisco::load($disco2);
+        $load_disco3 = FDisco::load($disco3);
         $dischi = array($load_disco1,$load_disco2,$load_disco3);
         return $dischi;
     }
