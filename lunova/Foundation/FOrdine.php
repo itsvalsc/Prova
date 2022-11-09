@@ -83,7 +83,7 @@ class FOrdine{
 
         $query = "SELECT * FROM ordine WHERE IdCliente= :idcl";
         $stmt = $pdo->prepare($query);
-        $stmt->execute( [":idcl" => $ut] );
+        $stmt->execute( [":idcl" => $cl] );
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $ordini = array();
         foreach ($rows as $row) {

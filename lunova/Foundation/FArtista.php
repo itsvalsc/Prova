@@ -84,14 +84,14 @@ class FArtista{
 
                 $utente = new EArtista($IdArtista,$Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Email,$Password);
                 return $utente;
-                //TODO: aggiustare costruttore per artista e cliente, ad artista aggiungere e recupare l'IBAN
+                //TODO: aggiustare costruttore per artista e cliente, ad artista aggiungere e recupare l'IBAN [da controllare]
             }
             else {return "Non ci sono artisti";}
         }
         catch (PDOException $exception) { print ("Errore".$exception->getMessage());}
     }
 
-    //TODO:finire update artista
+    //TODO:finire update artista [da controllare]
     public static function update(EArtista $art) : bool{
         $pdo = FConnectionDB::connect();
         $query = "UPDATE cliente SET IdCliente = :id, Email = :email, Nome = :nome, Cognome = :cognome,Via = :via, NCivico = :ncivico, Provincia = :provincia, Citta = :citta, CAP = :cap,NTelefono = :ntelefono, Password = :password, Livello = :livello   WHERE Email = :email";
