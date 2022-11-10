@@ -17,6 +17,9 @@ require_once "Foundation/FRichiesta.php";
 require_once "Entity/EVotazione.php";
 require_once "Foundation/FVotazione.php";
 require_once "Foundation/FPersistentManager.php";
+require_once "Foundation/FArtista.php";
+require_once "Entity/EArtista.php";
+
 
 $utt1 = new EClient("Valentina","Scimia","via vale","3","L'Aquila","AQ","67100","1029384756","valentina@scimia.com",'passwd3!');
 $utt2 = new EClient("Noemi","Barbaro","via noemi","2","L'Aquila","AQ","67100","0987654321","noemi@barbaro.com",'passwd2!');
@@ -26,7 +29,13 @@ $a=FCliente::store($utt1);
 $a=FCliente::store($utt2);
 $a=FCliente::store($utt3);
 
-
+//TODO: aggiungete sul database alla tabella artista alla fine l'attributo NomeArte
+$art1 = new EArtista("Rocco","Pagliarulo","Via Palermo","148","Salerno","SA","65123","3314756294","roccohunt@gmail.com","rocchino1","Rocco Hunt");
+$art2 = new EArtista("Laura","Pausini","via roma","30","Faenza","23600","cappe","3451122637","laurapausini@gmail.com","laurina1","Laura Pausini");
+$art3 = new EArtista("Alessandro","Aleotti","via salernitana","63","Milano","MI","20100","3478172664","jaxsupport@gmail.com","jaxino1","J-AX");
+FArtista::store($art1);
+FArtista::store($art2);
+FArtista::store($art3);
 //$a=FCliente::load('l@l.com');
 
 //$a=FCliente::prelevaCliente('pluto@gmail.com');
