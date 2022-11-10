@@ -23,7 +23,7 @@ class FArtista{
      */
     public static function store(EArtista $artista): void {
         $pdo = FConnectionDB::connect();
-        $query = "INSERT INTO artista VALUES(:IdArtista,:Email,:Nome,:Cognome,:Via,:NCivico,:Provincia,:Citta,:CAP,:NTelefono,:Password,:Livello)";
+        $query = "INSERT INTO artista VALUES(:IdArtista,:Email,:Nome,:Cognome,:Via,:NCivico,:Provincia,:Citta,:CAP,:NTelefono,:Password,:Livello,:NomeArte)";
         $stmt = $pdo->prepare($query);
         $stmt->execute(array(
             ':IdArtista' => $artista->getIdArtista(),
@@ -37,7 +37,8 @@ class FArtista{
             ':CAP' =>$artista->getCAP(),
             ':NTelefono' =>$artista->getTelefono(),
             ':Password' =>$artista->getPassword(),
-            ':Livello' =>$artista->getLivello()
+            ':Livello' =>$artista->getLivello(),
+            ':NomeArte' =>$artista->getNomeArte()
         ));
     }
 
@@ -80,10 +81,10 @@ class FArtista{
                 $CAP = $rows[0]['CAP'];
                 $Telefono = $rows[0]['NTelefono'];
                 $Password = $rows[0]['Password'];
-                // $Livello = $rows[0]['Livello'];
+                $NomeArte = $rows[0]['NomeArte'];
 
-                $utente = new EArtista($IdArtista,$Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Email,$Password);
-                return $utente;
+                $artista = new EArtista($IdArtista,$Nome,$Cognome,$Via,$NumeroCivico,$Provincia,$Citta,$CAP,$Telefono,$Email,$Password,$NomeArte);
+                return $artista;
                 //TODO: aggiustare costruttore per artista e cliente, ad artista aggiungere e recupare l'IBAN [da controllare]
             }
             else {return "Non ci sono artisti";}
@@ -94,7 +95,7 @@ class FArtista{
     //TODO:finire update artista [da controllare]
     public static function update(EArtista $art) : bool{
         $pdo = FConnectionDB::connect();
-        $query = "UPDATE cliente SET IdCliente = :id, Email = :email, Nome = :nome, Cognome = :cognome,Via = :via, NCivico = :ncivico, Provincia = :provincia, Citta = :citta, CAP = :cap,NTelefono = :ntelefono, Password = :password, Livello = :livello   WHERE Email = :email";
+        $query = "UPDATE cliente SET IdCliente = :id, Email = :email, Nome = :nome, Cognome = :cognome,Via = :via, NCivico = :ncivico, Provincia = :provincia, Citta = :citta, CAP = :cap,NTelefono = :ntelefono, Password = :password, Livello = :livello , NomeArte = :NomeArte  WHERE Email = :email";
         $stmt=$pdo->prepare($query);
         $ris = $stmt->execute(array(
             ":id" => $art->getIdClient(),
@@ -108,7 +109,8 @@ class FArtista{
             ":cap" => $art->getCAP(),
             ":ntelefono" => $art->getTelefono(),
             ":password" => $art->getPassword(),
-            ":livello" => $art->getLivello()));
+            ":livello" => $art->getLivello(),
+            ":NomeArte" => $art->getNomeArte()));
 
         return $ris;
     }
