@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/vapor/bootstrap.css">
 
+    <link rel="stylesheet" type="text/css" href="http://localhost/lunova/inc/css/style.css ">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!--<link rel="stylesheet" type="text/css" href="<?php //echo ROOT_URL; ?>/assets/css/style.css ">-->
 
     <title>Lunova</title>
@@ -40,6 +43,20 @@
                     </div>
                 </li>
             </ul>
+
+
+
+            <ul class="navbar-nav ml-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost/lunova/templates/?page=cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge rounded-pill bg-secondary">1</span>
+                    </a>
+                </li>
+            </ul>
+
+
+
             <form class="d-flex">
                 <input class="form-control me-sm-2" type="text" placeholder="Search">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
