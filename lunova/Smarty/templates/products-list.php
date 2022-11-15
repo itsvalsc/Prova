@@ -33,7 +33,7 @@ require_once "inc/init.php";
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $product->getTitolo() ?></h5>
                     <h6 class = "card-subtitle mb-2 text-muted"><?php echo $product->getPrezzo() ?> $</h6>
-                    <p class="card-text"><?php echo $product->getDescrizione() ?></p>
+                    <p class="card-text"><?php echo substr($product->getDescrizione(), 0, 20) . '...'  ?></p>
                     <!--<button class="btn btn-secondary btn-sm btn-block rounded-0" onclick="location.href='<?php //echo ROOT_URL . '?page=view-product&id=' . esc_html($product->getID()); ?>'">Vedi</button>-->
                     <button class="btn btn-secondary btn-sm btn-block rounded-0" onclick="#">Vedi</button>
                     <form method="post">
