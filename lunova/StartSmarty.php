@@ -1,13 +1,13 @@
 <?php
-require('Smarty/Smarty.class.php');
+require('Smarty/smarty-lib/Smarty.class.php');
 
 class StartSmarty{
     public static function configuration(){
         $smarty=new Smarty();
-        $smarty->setTemplateDir('Smarty/templates/');
-        $smarty->setCompileDir('Smarty/templates_c/');
-        $smarty->setConfigDir('Smarty/configs/');
-        $smarty->setCacheDir('Smarty/cache/');
+        $smarty->setTemplateDir('Smarty/smarty-dir/templates/');
+        $smarty->setCompileDir('Smarty/smarty-dir/templates_c/');
+        $smarty->setConfigDir('Smarty/smarty-dir/configs/');
+        $smarty->setCacheDir('Smarty/smarty-dir/cache/');
         return $smarty;
     }
 }
