@@ -26,4 +26,4 @@ require_once "./Entity/EArtista.php";
 require_once "./inc/init.php";
 
 define('ROOT_URL', 'http://localhost/lunova/templates/');
-define('Products', FDisco::prelevaDischi());
+//define('Products', FDisco::prelevaDischi());

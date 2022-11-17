@@ -27,7 +27,7 @@ require_once 'C:\xampp\htdocs\lunova\inc\css\icons.php';
         <div class="collapse navbar-collapse" id="navbarColor03">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/lunova/templates/?page=products-list">Prodotti</a>
+                    <a class="nav-link" href="http://localhost/lunova/Products_list/elenco_dischi">Prodotti</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="http://localhost/lunova/templates/?page=login">Login</a>
