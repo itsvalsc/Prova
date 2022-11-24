@@ -73,6 +73,7 @@ class FDisco {
             $stmt->execute();
             $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $dischi = array();
+            $i=0;
             foreach ($rows as $row) {
                 $disc=new EDisco($row['name'],
                     $row['artist_id'],
@@ -83,7 +84,8 @@ class FDisco {
                     $row['Qta']
                     );
                 $disc->setID($row['ID']);
-                $dischi[$row['ID']]=$disc;
+                $dischi[$i]=$disc;
+                ++$i;
             }
             //$pdo->commit();
             return $dischi;
