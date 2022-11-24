@@ -17,6 +17,7 @@ function myautoload($class_name) {
             require ('Control/'.$class_name.'.php');
             break;
     }
+
 }
 
 spl_autoload_register("myautoload");

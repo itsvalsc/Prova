@@ -6,5 +6,6 @@ class CProducts_list{
         $pers = FPersistentManager::getInstance();
         FSessione::start();
         $elenco = $pers->prelevaDischi();
+        $view->lista_prodotti($elenco);
     }
 }

@@ -36,7 +36,7 @@ class CFrontController
                 }
             }
         }else{
-            $controller = "CProduct_list";
+            $controller = "CRicercaDisco";
             $function = "index";
             $controller::$function();
         }

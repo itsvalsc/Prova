@@ -1,14 +1,11 @@
 <?php
-
-class VProducts_list{
+class VHome{
     private $smarty;
-
     public function __construct(){
 
         $this->smarty = StartSmarty::configuration();
 
     }
-
     /**
      * @param $template
      */
@@ -24,8 +21,9 @@ class VProducts_list{
         $this->smarty->assign($name,$dati);
     }
 
-    public function lista_prodotti($prod){
-        $this->setData('products', $prod);
-        $this->setTemplate('products_list.tpl');
+    public function ShowIndex($logged){
+        $this->setTemplate('index.tpl');
+        $this->setData('logged',$logged);
+        $this->setTemplate('homepage.tpl');  //TODO: controllare
     }
 }

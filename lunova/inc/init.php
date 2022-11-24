@@ -1,4 +1,5 @@
 <?php
+/*
 require_once "C:\\xampp\\htdocs\\lunova\\Foundation\\FDisco.php";
 require_once "C:\\xampp\\htdocs\\lunova\\Foundation\\FConnectionDB.php";
 require_once "C:\\xampp\\htdocs\\lunova\\inc\\configdb.php";
@@ -24,6 +25,6 @@ require_once "./Foundation/FPersistentManager.php";
 require_once "./Foundation/FArtista.php";
 require_once "./Entity/EArtista.php";
 require_once "./inc/init.php";
-
+*/
 define('ROOT_URL', 'http://localhost/lunova/templates/');
 //define('Products', FDisco::prelevaDischi());
